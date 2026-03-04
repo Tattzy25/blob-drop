@@ -1360,9 +1360,7 @@
       webhookInput.addEventListener("input", () => {
         const val = webhookInput.value.trim();
         state.webhookUrl = val;
-        const valid = val.length > 0 && isValidWebhookUrl(val);
-        webhookStatus.className =
-          "webhook-status" + (val ? (valid ? " valid" : " invalid") : "");
+        webhookStatus.className = "webhook-status" + (val ? " valid" : "");
         updateButtons();
       });
 
@@ -1526,9 +1524,6 @@
       function updateButtons() {
         const hasPending = state.files.some((f) => f.state === "pending");
         const hasFiles = state.files.length > 0;
-        const hasWebhook =
-          state.webhookUrl.startsWith("http://") ||
-          state.webhookUrl.startsWith("https://");
         const hasResults = state.results.length > 0;
 
         startBtn.disabled = !hasPending || state.processing || !hasWebhook;
@@ -1606,7 +1601,7 @@
 
         state.processing = true;
         progressWrap.style.display = "";
-        startBtn.disabled = true;
+        startBtn.disabled = false;
         clearBtn.disabled = true;
 
         let processed = 0;
