@@ -188,7 +188,6 @@
         font-family: var(--mono);
         font-size: 13px;
         color: var(--text-bright);
-        placeholder-color: var(--text-dim);
       }
 
       .webhook-input::placeholder {
@@ -1144,7 +1143,7 @@
 
       <!-- ACTION ROW -->
       <div class="action-row">
-        <button class="btn btn-primary" id="start-btn" disabled>
+        <button class="btn btn-primary" id="start-btn">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
             <polygon points="3,2 11,7 3,12" />
           </svg>
@@ -1526,7 +1525,7 @@
         const hasFiles = state.files.length > 0;
         const hasResults = state.results.length > 0;
 
-        startBtn.disabled = !hasPending || state.processing || !hasWebhook;
+        startBtn.disabled = false; // Always enable START button
         clearBtn.disabled = !hasFiles || state.processing;
         exportCsvBtn.disabled = !hasResults;
         exportJsonBtn.disabled = !hasResults;
