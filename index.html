@@ -1586,14 +1586,6 @@
         if (state.processing) return;
 
         const webhookUrl = state.webhookUrl.trim();
-        if (
-          !webhookUrl ||
-          (!webhookUrl.startsWith("http://") &&
-            !webhookUrl.startsWith("https://"))
-        ) {
-          showToast("Please enter a valid webhook URL first.", "error");
-          return;
-        }
 
         const pending = state.files.filter((f) => f.state === "pending");
         if (!pending.length) return;
